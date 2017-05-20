@@ -2,6 +2,7 @@ package FlightOrder;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Flight {
+	
 	//Flight信息处理
 	private String FlightID;
 	private String startTime;
@@ -14,7 +15,9 @@ public class Flight {
 	private int seatCapacity;//容量
 	private String flightStatus;
 	public ArrayList<Passage> passengerID;
-	public static ArrayList<Flight> flightList;
+	//初始化航班信息列表
+	public static ArrayList<Flight> flightList=new ArrayList<Flight>();
+
 	
 	public Flight(String FlightID ,String startTime ,String arravalTime,  String startCity ,String arrivalCity ,
 			String departureDate ,int price , int currentPassengers , int seatCapacity , String flightStatus){
@@ -171,11 +174,30 @@ public class Flight {
 	}
 	
 	//创建航班方法
-	public Flight createFlight(){
+	public Flight createFlight(ArrayList<Flight> flightList){
 		Scanner input=new Scanner(System.in);
-		System.out.println(getFlightID());
+		System.out.println("输入航班号");
+		String FlightID=input.next();
+		System.out.println("输入起飞时间");
+		String startTime=input.next();
+		System.out.println("输入到达时间");
+		String arravalTime=input.next();
+		System.out.println("输入起飞城市");
+		String startCity=input.next();
+		System.out.println("输入到达城市");
+		String arrivalCity=input.next();
+		System.out.println("输入日期");
+		String departureDate=input.next();
+		System.out.println("输入价格");
+		int price=input.nextInt();//价格
+		int currentPassengers=0;//人数
+		System.out.println("输入人数");
+		int seatCapacity=input.nextInt();//容量
+		String flightStatus="UNPUBLISHED";
+
+		Flight flight=new Flight(FlightID, startTime, arravalTime, startCity, arrivalCity, departureDate, price, seatCapacity, currentPassengers, flightStatus);
 		
-		return null;
+		return flight;
 		
 	}
 	//删除航班
@@ -191,14 +213,12 @@ public class Flight {
 		int index=0;
 		index=input.nextInt();
 		
-		System.out.println("修改航班状态为：");
-		String status=input.next();
-		
 	}
 	//修改航班状态
 	//public void changeFlightStatus(String ){
 		
 	//}
+	
 	
 	
 	public static void main(String []args){

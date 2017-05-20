@@ -54,7 +54,7 @@ public class Admin {
 		System.out.println("新管理员名称");
 		adminName=input.next();
 		System.out.println("新管理员密码");
-		adminName=input.next();
+		adminPW=input.next();
 		Admin s=new Admin(adminName,adminPW);
 		return s;
 		
