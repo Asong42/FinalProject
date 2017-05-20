@@ -41,7 +41,8 @@ public class Passage {
 		this.orderList = orderList;
 	}
 	
-	//
+	//新增旅客方法
+	//public void create
 	
 	
 

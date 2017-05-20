@@ -22,8 +22,12 @@ public class Admin {
 		
 	}
 	
-	public Admin(){
+	public Admin(String adminName2, String adminPW2, ArrayList<Admin> adminList2){
 		
+	}
+
+	public Admin() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getAdminName() {
@@ -48,9 +52,9 @@ public class Admin {
 		
 		Scanner input=new Scanner(System.in);
 		System.out.println("新管理员名称");
-		adminName=input.nextLine();
+		adminName=input.next();
 		System.out.println("新管理员密码");
-		adminName=input.nextLine();
+		adminName=input.next();
 		Admin s=new Admin(adminName,adminPW);
 		return s;
 		
@@ -61,13 +65,15 @@ public class Admin {
 		adminList.remove(s);
 	}
 	//验证管理员的身份信息
-	public boolean loginAdmin(String adminName,String adminPW){
+	public boolean loginAdmin(String adminName,String adminPW,ArrayList<Admin> adminList){
 		Admin test=new Admin(adminName,adminPW);
-		boolean login=false;
-		login = adminList.contains(test);
+		boolean login = adminList.contains(test);
 		return login;	
 	}
 
+	public static void main(String []args){
+		
+	}
 	
 
 }

@@ -14,6 +14,7 @@ public class Flight {
 	private int seatCapacity;//容量
 	private String flightStatus;
 	public ArrayList<Passage> passengerID;
+	public static ArrayList<Flight> flightList;
 	
 	public Flight(String FlightID ,String startTime ,String arravalTime,  String startCity ,String arrivalCity ,
 			String departureDate ,int price , int currentPassengers , int seatCapacity , String flightStatus){
@@ -29,9 +30,23 @@ public class Flight {
 				}
 	
 
+	public Flight(String flightID2, String startTime2, String arravalTime2, String startCity2, String arrivalCity2, String departureDate2, int price2, int currentPassengers2, int seatCapacity2, String flightStatus2, ArrayList<Flight> flightList2) {
+		this.FlightID=FlightID;
+		this.startTime=startTime;
+		this.arravalTime=arravalTime;
+		this.startCity=startCity;
+		this.arrivalCity=arrivalCity;
+		this.departureDate=departureDate;
+		this.price=price;
+		this.seatCapacity=seatCapacity;
+		this.flightStatus=flightStatus;
+		this.flightList=flightList2;
+	}
+
 	public Flight() {
 		// TODO Auto-generated constructor stub
 	}
+
 
 	//获取航班号、设置航班号
 	public String getFlightID(){
@@ -140,7 +155,7 @@ public class Flight {
 	public void setFlightList(ArrayList<Flight> flightList) {
 		FlightList = flightList;
 	}
-	
+	//显示全部航班信息
 	public void showFlightList(ArrayList<Flight> flightList){
 		for (Flight j : flightList) {
 			System.out.println(j);
@@ -148,8 +163,10 @@ public class Flight {
 	}
 
 	//创建初始航班
-	public void createFlight(String FlightID ,String startTime ,String arravalTime,  String startCity ,String arrivalCity ,String departureDate ,int price , int currentPassengers , int seatCapacity , String flightStatus ){
-		Flight flight =new Flight(  FlightID , startTime , arravalTime,  startCity , arrivalCity , departureDate , price , currentPassengers , seatCapacity,flightStatus );
+	public void createFlight(String FlightID ,String startTime ,String arravalTime,  String startCity ,String arrivalCity ,
+			String departureDate ,int price , int currentPassengers , int seatCapacity , String flightStatus, ArrayList<Flight> flightList){
+		Flight flight =new Flight(  FlightID , startTime , arravalTime,  startCity , arrivalCity , 
+				departureDate , price , currentPassengers , seatCapacity,flightStatus ,flightList);
 		FlightList.add(flight);
 	}
 	
@@ -167,7 +184,21 @@ public class Flight {
 		FlightList.remove(flight);
 	}
 	
+	//查询flightList中特定航班的下标
+	public void quiryFlightIndex(ArrayList<Flight> flightList){
+		Scanner input=new Scanner(System.in);
+		Flight flight=new Flight();
+		int index=0;
+		index=input.nextInt();
 		
+		System.out.println("修改航班状态为：");
+		String status=input.next();
+		
+	}
+	//修改航班状态
+	//public void changeFlightStatus(String ){
+		
+	//}
 	
 	
 	public static void main(String []args){
