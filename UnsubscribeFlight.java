@@ -11,14 +11,21 @@ public class UnsubscribeFlight {
 		this.flightList=flightList;
 	}
 	
-	public void unsubscribeFlight(ArrayList<Order> orderList,ArrayList<Flight> flightList){
+	public void unsubscribeFlight(String userName,ArrayList<Order> orderList,ArrayList<Flight> flightList){
 	System.out.println("请输入要退订航班的ID");
 	Scanner input =new Scanner(System.in);
 	String flightID	= input.next();
 	
+	//订单操作
+	for(Order order:orderList){
+		if(flightID.equals(order.getFlight())&&userName.equals(order.getPassageID())==true){
+			order.setOrderStatus("CANCEL");
+		}
+	}
 	
+	//航班操作
 	for(Flight flight:Flight.flightList){
-		if(input.equals(flight.getFlightID())){
+		if(flightID.equals(flight.getFlightID())){
 			System.out.println(Flight.flightList.indexOf(flight)+" "+flight.getFlightID()+" "+flight.getStartTime()+" "+flight.getArravalTime()+" "
 					+flight.getStartCity()+" "+flight.getArrivalCity()+" "+flight.getDepartureDate()+" "+flight.getPrice()+" "
 					+flight.getCurrentPassengers()+" "+flight.getSeatCapacity()+" "+flight.getFlightStatus());
@@ -37,6 +44,7 @@ public class UnsubscribeFlight {
 	    if(status.equals("FULL")){
 		   flight.setFlightStatus("AVAILABLE");//状态变化为可预订
 	    }
+	    break;
 	}
 
 }

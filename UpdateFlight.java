@@ -26,7 +26,7 @@ public class UpdateFlight {
 		if(status.equals("UNPUBLISHED")){
     		System.out.println("请输入要修改航班的ID");
     		//输入修改项目和修改后的内容
-    		System.out.println("1.起飞城市, 2.到达城市, 3.起飞时间, 4.起飞日期, 5.当前价格,6.容量");
+    		System.out.println("1.起飞城市, 2.到达城市, 3.起飞时间, 4.起飞日期, 5.当前价格,6.容量,");
     		System.out.print("请选择修改项");
     		int number=input.nextInt();
     		
@@ -59,6 +59,7 @@ public class UpdateFlight {
 						+flight.getStartCity()+" "+flight.getArrivalCity()+" "+flight.getDepartureDate()+" "+flight.getPrice()+" "
 						+flight.getCurrentPassengers()+" "+flight.getSeatCapacity()+" "+flight.getFlightStatus());
     			}
+    			
     		}
     		//大于4的时候4
     	   else{
@@ -81,6 +82,7 @@ public class UpdateFlight {
        			System.out.println("当前指令错误");
        		    }
     		}
+    		
 		}
     	
     	
@@ -90,7 +92,7 @@ public class UpdateFlight {
        }
        
        //其余情况：可预订和已满
-       else{
+       else if(status.equals("AVAILIABLE")||status.equals("FULL")){
 		   System.out.println("5.当前价格,6.容量");
    		   System.out.print("请选择修改项");
    		   int number=input.nextInt();
@@ -109,10 +111,11 @@ public class UpdateFlight {
 					+flight.getStartCity()+" "+flight.getArrivalCity()+" "+flight.getDepartureDate()+" "+flight.getPrice()+" "
 					+flight.getCurrentPassengers()+" "+flight.getSeatCapacity()+" "+flight.getFlightStatus());
    		     }
+   		   
    		    else{
    			System.out.println("当前指令错误");
    		}
-	}
+	}break;
     
     }
     

@@ -87,7 +87,7 @@ public class ReserveFlights {
 	
 	
 	
-	public static void reserve(String yourFlightID,String passageID) {
+	public static Order reserve(String yourFlightID,String passageID) {
 		Order order=new Order();
 		for (int i = 0; i < Flight.flightList.size(); i++) {
 			if (Flight.flightList.get(i).getFlightID().equals(yourFlightID) && Flight.flightList.get(i).getFlightStatus().equals("UNPUBLISH")){
@@ -100,11 +100,12 @@ public class ReserveFlights {
 				System.out.println("抱歉，此航班预定系统已关闭，您无法预定该航班。");
 			}
 			if (Flight.flightList.get(i).getFlightID().equals(yourFlightID) && Flight.flightList.get(i).getFlightStatus().equals("AVAILABLE")) {
-				order.getOrder(yourFlightID,passageID);
+				return order.getOrder(yourFlightID,passageID);
 				
 			}
 				
 		}
+		return order.getOrder(yourFlightID,passageID);
   }
 
 	public ReserveFlights(ArrayList<Order> orderList) {

@@ -134,6 +134,8 @@ public class systemRun {
 							"1.新增管理员\n"
 							+ "2.添加航班\n"
 							+ "3.修改航班信息\n"
+							+ "4.查询注册用户信息\n"
+							+ "5.查询已有航班信息"
 							
 							);
 					
@@ -159,7 +161,27 @@ public class systemRun {
 						updateFlight.change(Flight.flightList);
 					}
 					
+					//查询乘客信息
+					else if(function==4){
+						System.out.println("已注册用户\n"
+								+ "用户名       真实姓名      证件号      订单");
+						for(Passage j:passageList){
+							int t=0;
+							t++;
+							System.out.println(t+" "+j.getPassengerID()+" "+j.getRealName()+" "+j.getIdentityID()+" "+j.getOrderList());
+						}
+					}
 					
+					//查询订单信息
+					else if(function==5){
+						System.out.println("目前订单信息");
+						for(Order o:orderList){
+							for(Order f:orderList){
+									System.out.println(o.getOrderNumber()+" "+o.getFlight()+" "+o.getPassageID()+" "+o.getSeat());
+								
+							}
+					}
+					}
 				}
 				else if(login==false){
 					System.out.print("用户名或密码错误");
@@ -224,14 +246,13 @@ public class systemRun {
 						login=false;
 					}
 				}
-				System.out.print(login);
 
 				if(login==true){
 					
 						//查询订单
 						QuiryOrders quiry=new QuiryOrders(orderList);
-						quiry.quiryOrders(userName);
-						
+						quiry.quiryOrders(userName,orderList);
+
 					}
 				else{
 					System.out.println("用户不存在");
@@ -270,7 +291,8 @@ public class systemRun {
 				System.out.println("请输入您将预定的航班的航班号:");
 				String yourFlightID = r.next();
 
-				ReserveFlights.reserve(yourFlightID, userName);
+				orderList.add(ReserveFlights.reserve(yourFlightID, userName));
+				
 			}
 				else {
 					System.out.print("用户不存在");
@@ -295,11 +317,14 @@ public class systemRun {
 						login=false;
 					}
 				}
-				
+				if(login==true){
 				UnsubscribeFlight unsubscribeFlight=new UnsubscribeFlight(orderList, Flight.flightList);
-				unsubscribeFlight.unsubscribeFlight(orderList, Flight.flightList);
+				unsubscribeFlight.unsubscribeFlight(userName, orderList, Flight.flightList);
 			}
-			
+				else{
+					System.out.println("用户不存在");
+				}
+			}
 			//第六个功能
 			//新用户注册
 			else if (number==6){

@@ -10,10 +10,9 @@ public class QuiryOrders {
 		this.orderList=orderList;
 	}
 	
-	public void quiryOrders(String userName){
+	public void quiryOrders(String userName,ArrayList<Order> orderList){
 		int t=orderList.size();
 		if(t!=0){
-			System.out.println("您的订单有"+orderList.size()+"条:");
 			for(Order j:orderList){
 				if(userName.equals(j.getPassageID())){
 					System.out.println(j.getOrderNumber()+" "+j.getPassageID()+" "+j.getSeat()+" "+

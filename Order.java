@@ -97,26 +97,27 @@ public class Order {
 	
 	
 	//下订单
-	public  void getOrder(String yourFlightID,String passageID) {
+	public  Order getOrder(String yourFlightID,String passageID) {
 
 		String orderNumber=yourFlightID+" "+passageID;
+		String seat = null;
 		for (int i = 0; i < Flight.flightList.size(); i++) {
 			if (Flight.flightList.get(i).getFlightID().equals(yourFlightID)) {
 			String flight = String.valueOf("航班号："+Flight.flightList.get(i).getFlightID()+"/n起飞时间："+Flight.flightList.get(i).getStartTime()+"/n到达时间："
 					+Flight.flightList.get(i).getArravalTime()+"/n起飞城市："+Flight.flightList.get(i).getStartCity()+"/n到达城市："+Flight.flightList.get(i).getArrivalCity()
 					+"/n出发日期："+Flight.flightList.get(i).getDepartureDate()+"/n航班价格："+Flight.flightList.get(i).getPrice()+"/n乘客人数："+Flight.flightList.get(i).getCurrentPassengers()
 					+"/n航班容量："+Flight.flightList.get(i).getSeatCapacity()+"/n航班状态："+Flight.flightList.get(i).getFlightStatus());
-		   String seat = String.valueOf(Flight.flightList.get(i).getCurrentPassengers()+1);
+		   seat = String.valueOf(Flight.flightList.get(i).getCurrentPassengers()+1);
 			}
-		
+		}
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String createDate = df.format(new Date());
 		String orderStatus = "UNPAID";
 		
-		Order o = new Order(passageID,orderNumber,seat,flight, createDate,orderStatus);
-		System.out.println("用户名："+o.getPassageID()+"/n订单编号："+o.getOrderNumber()+"/n座位号："+
+		Order o = new Order(passageID,orderNumber,seat,yourFlightID, createDate,orderStatus);
+		System.out.println("用户名："+o.getPassageID()+"\n订单编号："+o.getOrderNumber()+"\n座位号："+
 		o.getSeat()+"航班信息："+o.getFlight()+"预定日期："+o.getCreateDate()+"订单状态："+o.getOrderStatus());
-		orderList.add(o);
+
 		if (orderStatus.equals("UNPAID"))
 		{
 			System.out.println("确认支付吗?(请填写 \"是\" 或者 \"否\")");
@@ -134,14 +135,19 @@ public class Order {
 						 Flight.flightList.get(i1).setCurrentPassengers(m);//预定成功，当前乘客数+1
 						 if(Flight.flightList.get(i1).getCurrentPassengers()==Flight.flightList.get(i1).getSeatCapacity()){
 							Flight.flightList.get(i1).getFlightStatus().equals("FULL");//订满，状态变化为满
+							
 						 }
 					}
-	            }
+	         
+				break;}
 			}
+			
 		   }
-		}
-
+		
+		return o;
 }
+
+	
 
 	public static String Orders() {
 		// TODO Auto-generated method stub
